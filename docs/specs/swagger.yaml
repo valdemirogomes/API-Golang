@@ -1,0 +1,479 @@
+definitions:
+  cmd_api_controller.ErrorMessage:
+    properties:
+      message:
+        type: string
+    type: object
+  github_com_melisource_fury_go-dev-base-3-v2_cmd_api_domain.Category:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.CategoryDTO:
+    properties:
+      name:
+        type: string
+    required:
+    - name
+    type: object
+  github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.CategoryListResponseDTO:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.CategoryResponseDTO'
+        type: array
+      metadata:
+        $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.Metadata'
+    type: object
+  github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.CategoryResponseDTO:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.Metadata:
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+      total:
+        type: integer
+      total_entries:
+        type: integer
+    type: object
+  github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductDTO:
+    properties:
+      category:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image:
+        type: string
+      price:
+        minimum: 0
+        type: number
+      title:
+        type: string
+    required:
+    - category
+    - description
+    - image
+    - title
+    type: object
+  github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductDTO'
+        type: array
+      metadata:
+        $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.Metadata'
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
+info:
+  contact:
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Project to reprocess flows.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger GO Ready Bases API
+  version: "1.0"
+paths:
+  /category:
+    post:
+      consumes:
+      - application/json
+      description: Create category
+      parameters:
+      - description: category
+        in: body
+        name: category
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_domain.Category'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Create category
+      tags:
+      - categories
+  /category/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete category
+      parameters:
+      - description: category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Delete category
+      tags:
+      - categories
+    put:
+      consumes:
+      - application/json
+      description: Update category
+      parameters:
+      - description: category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: category
+        in: body
+        name: category
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.CategoryDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Update category
+      tags:
+      - categories
+  /product:
+    post:
+      consumes:
+      - application/json
+      description: Create product
+      parameters:
+      - description: product
+        in: body
+        name: product
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Create product
+      tags:
+      - products
+  /product/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete product
+      parameters:
+      - description: product id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Delete product
+      tags:
+      - products
+    get:
+      consumes:
+      - application/json
+      description: Get product by id
+      parameters:
+      - description: product id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Get product by id
+      tags:
+      - products
+    put:
+      consumes:
+      - application/json
+      description: Update product
+      parameters:
+      - description: product id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: product
+        in: body
+        name: product
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Update product
+      tags:
+      - products
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Get products
+      parameters:
+      - description: sort
+        in: query
+        name: sort
+        type: string
+      - description: title
+        in: query
+        name: title
+        type: string
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      - description: min
+        in: query
+        name: min
+        type: number
+      - description: max
+        in: query
+        name: max
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Get products
+      tags:
+      - products
+  /products/categories:
+    get:
+      consumes:
+      - application/json
+      description: Get categories
+      parameters:
+      - description: sort
+        in: query
+        name: sort
+        type: string
+      - description: title
+        in: query
+        name: title
+        type: string
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: offset
+        in: query
+        name: offset
+        type: integer
+      - description: min
+        in: query
+        name: min
+        type: number
+      - description: max
+        in: query
+        name: max
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.CategoryListResponseDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Get categories
+      tags:
+      - categories
+  /products/category/{category}:
+    get:
+      consumes:
+      - application/json
+      description: Find product by category
+      parameters:
+      - description: category
+        in: path
+        name: category
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_melisource_fury_go-dev-base-3-v2_cmd_api_dto.ProductResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cmd_api_controller.ErrorMessage'
+      summary: Find product by category
+      tags:
+      - products
+swagger: "2.0"

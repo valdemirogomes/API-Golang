@@ -1,0 +1,8 @@
+mysqlconfig:
+  user: catalogv2_WPROD
+  password: DB_MYSQL_DESAENV08_CATALOGV2_CATALOGV2_WPROD
+  host: DB_MYSQL_DESAENV08_CATALOGV2_CATALOGV2_ENDPOINT
+  drive: mysql
+  database: catalogv2
+  poolsizemax: 500
+  poolsizeiddle: 500

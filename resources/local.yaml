@@ -1,0 +1,9 @@
+logLevel: -1
+mysqlconfig:
+  user: root
+  password: root
+  host: localhost
+  drive: mysql
+  database: catalog
+  poolsizemax: 500
+  poolsizeiddle: 500
